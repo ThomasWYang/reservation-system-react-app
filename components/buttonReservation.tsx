@@ -18,7 +18,6 @@ export function Button(props: ButtonProps) {
 }
 
 const styles = StyleSheet.create({
-    container: {},
     button: {
         width: 50,
         alignItems: 'center',

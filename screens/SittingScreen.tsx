@@ -1,9 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ActivityIndicator, StyleSheet, View, Text, TextInput } from 'react-native';
-import { Button } from '../components';
-
-import { Sitting } from '../components';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { ButtonSitting, Sitting } from '../components';
 import { GetOpenSittings, CreateReservationBySittingId } from '../services/services';
 
 
@@ -21,7 +19,7 @@ export function SittingScreen() {
     const [phone, setPhone] = useState<string>('');
 
     const [id, setId] = useState<number>(0);
-    const [selectedSittingInfo, setSelectedSittingInfo] = useState<string>();
+    const [selectedSittingInfo, setSelectedSittingInfo] = useState<string>('Please check sittings!');    
 
     function search() {
         setLoading(true);
@@ -29,6 +27,7 @@ export function SittingScreen() {
             setSittings(data);
             setLoading(false);
         });
+        setTimeout(() => setSelectedSittingInfo('Please select a sitting!'), 1000);
     }
 
     function onClickSitting(id: number, info: string) {
@@ -52,45 +51,61 @@ export function SittingScreen() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.content}>
-                <Text>Find Open Sittings</Text>
-                <Button title="GO" onPress={search} />
+
+            <View style={styles.custInfo}>
+                
                 <View style={styles.row}>
-                    <Text style={styles.input}>StartTime</Text>
+                    <Text style={styles.label}>Start Time</Text>
                     <TextInput style={styles.input} value={startTime} onChangeText={setStartTime} placeholder="e.g. 8:00:00" />
                 </View>
+
                 <View style={styles.row}>
-                    <Text style={styles.input}>EndTime</Text>
+                    <Text style={styles.label}>End Time</Text>
                     <TextInput style={styles.input} value={endTime} onChangeText={setEndTime} placeholder="e.g. 10:00:00" />
                 </View>
+
                 <View style={styles.row}>
-                    <Text style={styles.input}>Guests</Text>
+                    <Text style={styles.label}>Guests</Text>
                     <TextInput keyboardType='numeric' style={styles.input} value={guests} onChangeText={setGuests} placeholder="e.g. 2" />
                 </View>
+
                 <View style={styles.row}>
-                    <Text style={styles.input}>First Name</Text>
+                    <Text style={styles.label}>First Name</Text>
                     <TextInput style={styles.input} value={fName} onChangeText={setFName} placeholder="e.g. Adam" />
                 </View>
+
                 <View style={styles.row}>
-                    <Text style={styles.input}>Last Name</Text>
+                    <Text style={styles.label}>Last Name</Text>
                     <TextInput style={styles.input} value={lName} onChangeText={setLName} placeholder="e.g. S" />
                 </View>
+
                 <View style={styles.row}>
-                    <Text style={styles.input}>Email</Text>
+                    <Text style={styles.label}>Email</Text>
                     <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="e.g. as@gmail.com" />
                 </View>
+
                 <View style={styles.row}>
-                    <Text style={styles.input}>Phone</Text>
+                    <Text style={styles.label}>Phone</Text>
                     <TextInput style={styles.input} value={phone} onChangeText={setPhone} placeholder="e.g. 11111111" />
                 </View>
+
                 <View style={styles.row}>
-                    <Text style={styles.input}>SelectedSitting</Text>
-                    <Text>{selectedSittingInfo}</Text>
+                    <Text style={styles.label}>Your selection</Text>
+                    <TextInput style={styles.input} value={selectedSittingInfo}/>
                 </View>
-                <Button title="Reserve" onPress={reserve} />
+                
+            </View>
+
+            <View style={styles.row}>
+                <ButtonSitting title='Check Sittings' onPress={search} />
+                <ButtonSitting title="Reserve" onPress={reserve} />
+            </View>
+
+            <View>
                 <Sitting data={sittings} onClick={onClickSitting} />
                 {loading ? <ActivityIndicator style={styles.loader} /> : null}
             </View>
+
             <StatusBar style="auto" />
         </View>
     );
@@ -99,23 +114,33 @@ export function SittingScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //backgroundColor: 'beige',
+    },    
+    custInfo: {
+        //flex: 1,
+        marginVertical: 10,
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    label: {
+        color: 'gray',
+        width: 120,
+        padding: 10,
+        marginBottom: 10,
+        fontWeight: 'bold',
+    },
+    input: {
+        padding: 10,
+        marginBottom: 10,
+        backgroundColor: 'white',
+        borderRadius: 3,
+    },
+    sittingList: {
+        
     },
     loader: {
         marginTop: 15,
     },
-    content: {
-        flex: 1,
-        marginTop: 5,
-    },
-    input: {
-        padding: 10,
-        backgroundColor: 'white',
-        borderRadius: 3,
-        marginRight: 15,
-    },
-    row: {
-        flexDirection: 'row',
-
-    }
+    
 });

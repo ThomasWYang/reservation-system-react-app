@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 
 type SittingProps = {
     data: any[];
@@ -12,27 +12,30 @@ export function Sitting({ data, onClick }: SittingProps) {
         onClick(id,info);
     }
 
-
     const FlatListHeader = () => {
-        return (
-            <TouchableOpacity style={styles.titleRow} >
-                <Text style={styles.titleText}>Date</Text>
-                <Text style={styles.titleText}>StartTime</Text>
-                <Text style={styles.titleText}>EndTime</Text>
-                <Text style={styles.titleText}>Category</Text>
-                <Text style={styles.titleText}>Remaining</Text>
-
-            </TouchableOpacity>
-        );
+        if (data.length > 0) {
+            return (
+                <TouchableOpacity style={styles.titleRow} >
+                    <Text style={styles.titleText}>Date</Text>
+                    <Text style={styles.titleText}>Start</Text>
+                    <Text style={styles.titleText}>End</Text>
+                    <Text style={styles.titleText}>Category</Text>
+                    <Text style={styles.titleText}>Seats</Text>
+                </TouchableOpacity>
+            );
+        }
+        else {
+            return null;
+        }
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <FlatList
                 data={data}
                 ListHeaderComponent={FlatListHeader}
                 renderItem={({ item }) => (
-                    <TouchableOpacity style={styles.row} onPress={() => onPressSitting(item.id, `${item.date}, ${item.startTime}-${item.endTime}, ${item.category}`)}>
+                    <TouchableOpacity style={styles.row} onPress={() => onPressSitting(item.id, `${item.date}, ${item.category}`)}>
                         <Text style={styles.text}>{item.date}</Text>
                         <Text style={styles.text}>{item.startTime}</Text>
                         <Text style={styles.text}>{item.endTime}</Text>
@@ -41,7 +44,7 @@ export function Sitting({ data, onClick }: SittingProps) {
                     </TouchableOpacity>
                 )}
             />
-        </View>
+        </ScrollView>
     );
 }
 
@@ -51,35 +54,30 @@ const styles = StyleSheet.create({
     },
     titleRow: {
         backgroundColor: '#987654',
-        borderRadius: 5,
+        borderRadius: 3,
         padding: 10,
         marginBottom: 10,
         flexDirection: 'row',
-        alignItems: 'center',
+        textAlign: 'center'
     },
     titleText: {
         flex: 1,
-        fontSize: 18,
+        fontSize: 14,
+        fontWeight: 'bold',
         color: 'white',
     },
     row: {
         backgroundColor: 'white',
-        borderRadius: 5,
+        borderRadius: 3,
+        borderWidth: 1,
+        borderColor: '#987654',
         padding: 10,
         marginBottom: 10,
         flexDirection: 'row',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#987654',
+        textAlign: 'center'
     },
     text: {
         flex: 1,
-        fontSize: 16,
-    },
-    textLink: {
-        flex: 1,
-        color: 'blue',
-        fontSize: 16,
-        textDecorationLine: 'underline',
+        fontSize: 12,
     },
 });
