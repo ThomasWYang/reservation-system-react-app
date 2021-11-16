@@ -19,7 +19,7 @@ export function SittingScreen() {
     const [phone, setPhone] = useState<string>('');
 
     const [id, setId] = useState<number>(0);
-    const [selectedSittingInfo, setSelectedSittingInfo] = useState<string>('Please check sittings!');    
+    const [selectedSittingInfo, setSelectedSittingInfo] = useState<string>('Please check sittings!');
 
     function search() {
         setLoading(true);
@@ -53,7 +53,7 @@ export function SittingScreen() {
         <View style={styles.container}>
 
             <View style={styles.custInfo}>
-                
+
                 <View style={styles.row}>
                     <Text style={styles.label}>Start Time</Text>
                     <TextInput style={styles.input} value={startTime} onChangeText={setStartTime} placeholder="e.g. 8:00:00" />
@@ -91,9 +91,9 @@ export function SittingScreen() {
 
                 <View style={styles.row}>
                     <Text style={styles.label}>Your selection</Text>
-                    <TextInput style={styles.input} value={selectedSittingInfo}/>
+                    <TextInput style={styles.input} value={selectedSittingInfo} />
                 </View>
-                
+
             </View>
 
             <View style={styles.row}>
@@ -114,7 +114,7 @@ export function SittingScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },    
+    },
     custInfo: {
         //flex: 1,
         marginVertical: 10,
@@ -125,22 +125,21 @@ const styles = StyleSheet.create({
     },
     label: {
         color: 'gray',
-        width: 120,
+        width: '30%',
+        maxWidth: 200,
         padding: 10,
         marginBottom: 10,
         fontWeight: 'bold',
     },
     input: {
         padding: 10,
+        width: '50%',
         marginBottom: 10,
         backgroundColor: 'white',
         borderRadius: 3,
     },
-    sittingList: {
-        
-    },
     loader: {
         marginTop: 15,
     },
-    
+
 });

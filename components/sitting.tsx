@@ -3,13 +3,13 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, ScrollView } from '
 
 type SittingProps = {
     data: any[];
-    onClick(id: number,info:string): void;
+    onClick(id: number, info: string): void;
 }
 
 export function Sitting({ data, onClick }: SittingProps) {
 
-    function onPressSitting(id: number,info:string) {
-        onClick(id,info);
+    function onPressSitting(id: number, info: string) {
+        onClick(id, info);
     }
 
     const FlatListHeader = () => {
@@ -50,7 +50,8 @@ export function Sitting({ data, onClick }: SittingProps) {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15,
+        paddingHorizontal: '5%',
+        paddingVertical:15,
     },
     titleRow: {
         backgroundColor: '#987654',
