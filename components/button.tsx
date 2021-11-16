@@ -20,8 +20,10 @@ export function Button(props: ButtonProps) {
 const styles = StyleSheet.create({
     container: {},
     button: {
+        width: 50,
+        alignItems: 'center',
         padding: 10,
-        backgroundColor: '#536eff',
+        backgroundColor: '#a52a2a',
         borderRadius: 3,
     },
     text: {

@@ -11,7 +11,9 @@ export function ReservationScreen() {
     const [loading, setLoading] = useState(false);
 
     function search(searchTerm: string) {
+        setReservations([]);        
         setLoading(true);
+        
         GetReservationsByEmail(searchTerm).then((data: any) => {
             setReservations(data);
             setLoading(false);
@@ -22,8 +24,8 @@ export function ReservationScreen() {
         <View style={styles.container}>
             <Header onClick={search} />
             <View style={styles.content}>
-                <Reservation data={reservations} />
                 {loading ? <ActivityIndicator style={styles.loader} /> : null}
+                <Reservation data={reservations} />                
             </View>
             <StatusBar style="auto" />
         </View>
@@ -33,7 +35,6 @@ export function ReservationScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //backgroundColor: 'beige',
     },
     loader: {
         marginTop: 15,

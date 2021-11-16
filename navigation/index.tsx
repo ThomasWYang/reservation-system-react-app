@@ -15,7 +15,6 @@ import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import { ReservationScreen, SittingScreen } from '../screens';
 
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -61,10 +60,6 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="TabOne"      
       screenOptions={{
-        tabBarActiveTintColor: '#987654',
-        tabBarInactiveTintColor: '#efdecd',
-        tabBarActiveBackgroundColor: '#efdecd',
-        tabBarStyle: { backgroundColor: '#987654', height: 50},        
         headerStyle: {
           backgroundColor: '#987654',
         },
@@ -73,22 +68,32 @@ function BottomTabNavigator() {
           fontWeight: 'bold',
           fontSize: 18,
         },
+
+        tabBarActiveTintColor: '#987654',
+        tabBarInactiveTintColor: '#efdecd',
+        tabBarActiveBackgroundColor: '#efdecd',
+        tabBarStyle: { backgroundColor: '#987654', height: 60},
+        tabBarLabelPosition: 'below-icon'
       }}>
+      
       <BottomTab.Screen name="TabOne" component={TabOneScreen} options={{
         title: 'Home',
-        tabBarLabelStyle: {fontSize: 16},
+        tabBarLabelStyle: { fontSize: 14, fontWeight: 'bold', marginBottom: 5 },
         tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />
       }} />
+
       <BottomTab.Screen name="ReservationScreen" component={ReservationScreen} options={{
         title: 'Reservations',
-        tabBarLabelStyle: { fontSize: 16 },
-        tabBarIcon: ({ color }) => <TabBarIcon name="coffee" color={color} />
+        tabBarLabelStyle: { fontSize: 14, fontWeight: 'bold', marginBottom: 5 },
+        tabBarIcon: ({ color }) => <TabBarIcon name="cutlery" color={color} />
       }} />
+
       <BottomTab.Screen name="SittingScreen" component={SittingScreen} options={{
         title: 'Sittings',
-        tabBarLabelStyle: { fontSize: 16 },
+        tabBarLabelStyle: { fontSize: 14, fontWeight: 'bold', marginBottom: 5 },
         tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />
       }} />
+
     </BottomTab.Navigator>
   );
 }
@@ -100,5 +105,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={25} style={{ marginBottom: -3 }} {...props} />;
 }

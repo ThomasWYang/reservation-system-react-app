@@ -14,13 +14,18 @@ export function Header({ onClick }: HeaderProps) {
         if (searchTerm) {
             onClick(searchTerm);
         }
+        else {
+            alert("Valid email required");
+            window.location.reload();
+        }
     }
 
     return (
         <View>
-            <Text style={[{ paddingLeft: 20, paddingTop: 15 }]}>Existing customers: tx@gmail.com, wy@gmail.com</Text>
+            <Text style={styles.text}>Search suggestion:</Text>
+            <Text style={styles.text}>tx@gmail.com, wy@gmail.com, as@gmail.com</Text>
             <View style={styles.container}>
-                <TextInput style={styles.input} value={input} onChangeText={setInput} placeholder="Enter a customer's email to search for reservations" />
+                <TextInput style={styles.input} value={input} onChangeText={setInput} placeholder="Enter email to search" />
                 <Button title="GO" onPress={onPress} />
             </View>            
         </View>
@@ -32,11 +37,16 @@ const styles = StyleSheet.create({
         padding: 15,
         flexDirection: 'row',
     },
+    text: {
+        paddingLeft: 20,
+        paddingTop: 15,
+        color: 'gray'
+    },
     input: {
         padding: 10,
         backgroundColor: 'white',
         borderRadius: 3,
         flex: 1,
-        marginRight: 15,
+        marginRight: 10,
     }
 });
