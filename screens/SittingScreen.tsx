@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ActivityIndicator, StyleSheet, View, Text, TextInput, ScrollView } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, ScrollView, SafeAreaView } from 'react-native';
 import { ButtonSitting, Sitting } from '../components';
 import { GetOpenSittings, CreateReservationBySittingId } from '../services/services';
 

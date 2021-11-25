@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
-import { Button } from './index';
+import { Button } from './buttonReservation';
 
 type HeaderProps = {
     onClick(searchTerm: string): void;

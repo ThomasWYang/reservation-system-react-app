@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 
 type SittingProps = {
     data: any[];
@@ -30,10 +30,11 @@ export function Sitting({ data, onClick }: SittingProps) {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <FlatList
                 data={data}
                 ListHeaderComponent={FlatListHeader}
+                scrollEnabled={true}
                 renderItem={({ item }) => (
                     <TouchableOpacity style={styles.row} onPress={() => onPressSitting(item.id, `${item.date}, ${item.category}`)}>
                         <Text style={styles.text}>{item.date}</Text>
@@ -44,14 +45,14 @@ export function Sitting({ data, onClick }: SittingProps) {
                     </TouchableOpacity>
                 )}
             />
-        </ScrollView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: '5%',
-        paddingVertical:15,
+        paddingVertical: 15,
     },
     titleRow: {
         backgroundColor: '#987654',

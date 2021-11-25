@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 
 type ReservationProps = {
     data: any[];
@@ -25,22 +25,22 @@ export function Reservation({ data }: ReservationProps) {
     }
 
     return (
-        <ScrollView style={styles.container}>
-                <FlatList
-                    data={data}
-                    ListHeaderComponent={FlatListHeader}
-                    scrollEnabled={true}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.row} >
-                            <Text style={styles.text}>{item.sittingDate}</Text>
-                            <Text style={styles.text}>{item.arrival}</Text>
-                            <Text style={styles.text}>{item.leave}</Text>
-                            <Text style={styles.text}>{item.guests}</Text>
-                            <Text style={styles.text}>{item.status}</Text>
-                        </TouchableOpacity>
-                    )}
-                />
-            </ScrollView>
+        <View style={styles.container}>
+            <FlatList
+                data={data}
+                ListHeaderComponent={FlatListHeader}
+                scrollEnabled={false}
+                renderItem={({ item }) => (
+                    <TouchableOpacity style={styles.row} >
+                        <Text style={styles.text}>{item.sittingDate}</Text>
+                        <Text style={styles.text}>{item.arrival}</Text>
+                        <Text style={styles.text}>{item.leave}</Text>
+                        <Text style={styles.text}>{item.guests}</Text>
+                        <Text style={styles.text}>{item.status}</Text>
+                    </TouchableOpacity>
+                )}
+            />
+        </View >
     );
 }
 
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         borderColor: '#987654',
         padding: 10,
         marginBottom: 10,
-        flexDirection: 'row',        
+        flexDirection: 'row',
         textAlign: 'center'
     },
     text: {
